@@ -1,0 +1,32 @@
+[eval]
+type = "qa"
+evaluator = "deterministic"
+entrypoint = "python smoke.py"
+
+[eval.qa]
+qa_cap = 3
+
+[eval.pass]
+condition = "problems == 0"
+
+[eval.schema.problems]
+type = "int"
+description = "1 if the candidate's train_gpt.py failed to compile or train on one H100 before reaching step 20, else 0"
+
+[eval.schema.critique]
+type = "list[str]"
+description = "The failure, with the first traceback, sent to the agent"
+
+[eval.schema.steps_reached]
+type = "int"
+description = "Training steps the run reached on one H100"
+
+[eval.schema.first_step_s]
+type = "float"
+display = "{:.0f}"
+description = "Seconds from launch to the first training step (compiling included), -1 if none"
+
+[eval.schema.wall_s]
+type = "float"
+display = "{:.0f}"
+description = "Eval wall time, seconds"
