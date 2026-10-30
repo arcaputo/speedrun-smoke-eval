@@ -9,6 +9,11 @@ qa_cap = 3
 [eval.pass]
 condition = "problems == 0"
 
+# The agent may run this eval on its working tree during its turn (Kupanga's self-check). It behaves the same
+# either way (HARNESS_SELFCHECK=1 changes nothing here) and prints no stage lines.
+[eval.selfcheck]
+enabled = true
+
 [eval.schema.problems]
 type = "int"
 description = "1 if the candidate's train_gpt.py failed to compile or train on one H100 before reaching step 20, else 0"
